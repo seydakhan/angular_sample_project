@@ -1,0 +1,26 @@
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Oda Sayısı</label>
+    <input type="text" class="form-control" [(ngModel)]="kayit.odaSayisi" id="ilId">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Il</label>
+    <select class="form-select" [(ngModel)]="kayit.adres.il" (change)="setIlce()">
+      <option *ngFor="let item of ilList" value="{{item.id}}">{{item.ad}}</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Ilce</label>
+    <select class="form-select"  [(ngModel)]="kayit.adres.ilce">
+      <option *ngFor="let item of ilceList" value="{{item.id}}">{{item.ad}}</option>
+    </select>  
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">MetreKare</label>
+    <input type="text" class="form-control" [(ngModel)]="kayit.metreKare" id="metreKareId">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Fiyat</label>
+    <input type="text" class="form-control" [(ngModel)]="kayit.fiyat" id="fiyatId">
+  </div>
+
+  <button type="submit" (click)="kaydet()" class="btn btn-primary">Kaydet</button>

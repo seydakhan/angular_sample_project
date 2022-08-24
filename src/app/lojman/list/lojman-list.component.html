@@ -1,0 +1,46 @@
+<!-- Button trigger modal -->
+<button type="button" (click)="rowClick(null)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    +Yeni Lojman Ekle
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="data" app-lojman-form [kayit]="data" (setKayit)="listKayit($event)"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Oda sayısı</th>
+        <th scope="col">İl</th>
+        <th scope="col">İlce</th>
+        <th scope="col">metreKare</th>
+        <th scope="col">fiyat</th>
+        <th scope="col">Talep</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let item of list; let i=index" [ngStyle]="{'background-color': item.isTalepEdildi ? '#799':''}">
+        <th scope="row">{{i}}</th>
+        <td>{{item.odaSayisi}}</td>
+        <td>{{item.adres.il}}</td>
+        <td>{{item.adres.ilce}}</td>
+        <td>{{item.metreKare}}</td>
+        <td>{{item.fiyat}}</td>
+        <td><button *ngIf="!item.isTalepEdildi" (click)="rowClick(item)">Talep oluştur</button>
+          <button *ngIf="item.isTalepEdildi" (click)="rowClick(item)">Talep sil</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
